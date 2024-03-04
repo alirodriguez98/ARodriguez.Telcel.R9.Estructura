@@ -1,0 +1,47 @@
+﻿@model Negocio.Empleado
+@{
+    ViewBag.Title = "EmpleadoGetByNombre";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h1 class="text-center">Lista de Usuarios</h1>
+    <h5>Seleccione agregar para insertar un nuevo usuario</h5>
+    <hr />
+</div>
+<div>
+
+    @using (Html.BeginForm("EmpleadoGetByNombre", "Empleado", FormMethod.Get, new { enctype = "multipart/form-data" }))
+    {
+        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+        <input type="submit" class="btn btn-dark" value="Buscar" />
+    }
+</div>
+@if (Model == null)
+{
+    <div class="alert alert-warning" role="alert">
+        Ocurrio Error!
+    </div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-dark table-hover" id="tabla">
+            <thead class="table-secondary">
+                <tr class="text-center">
+                    <th>Empleado ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Negocio.Empleado empleado in Model.Empleados)
+                {
+                    <tr>
+                        <td>@empleado.EmpleadoID</td>
+                        <td>@empleado.Nombre</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -1,0 +1,41 @@
+﻿@model Negocio.Empleado
+@{
+    ViewBag.Title = "GetAllCatalogos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="justify-content-center">
+    <h2>Lista de catalogos (Empleado, Puesto, Departamento)</h2>
+</div>
+<br />
+
+@if (Model == null)
+{
+    <div class="alert alert-warning" role="alert">
+        Ocurrio Error!
+    </div>
+}
+else
+{
+    <h4>Tabla de Empleados</h4>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Id Puesto</th>
+                <th>Descripcion Puesto</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Negocio.Empleado empleado in Model.Empleados)
+            {
+                <tr>
+                    <td>@empleado.EmpleadoID</td>
+                    <td>@empleado.Nombre</td>
+                    <td><a href="@Url.Action("Delete", "Empleado", new {EmpleadoID = empleado.EmpleadoID})" class="btn btn-danger">Eliminar</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+}

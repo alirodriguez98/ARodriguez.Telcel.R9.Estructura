@@ -1,0 +1,80 @@
+﻿@model Negocio.Empleado
+@{
+    ViewBag.Title = "GetAllCatalogos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="justify-content-center">
+    <h2>Lista de catalogos (Empleado, Puesto, Departamento)</h2>
+</div>
+<br />
+
+@if (Model.Puesto.Puestos == null || Model.Departamento.Departamentos == null)
+{
+    <div class="alert alert-warning" role="alert">
+        Ocurrio Error!
+    </div>
+}
+else
+{
+                <h4>Tabla de Puestos</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Id Puesto</th>
+                            <th>Descripcion Puesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(Negocio.Puesto puesto in Model.Puesto.Puestos)
+                            {
+                                <tr>
+                                    <td>@puesto.PuestoID</td>
+                                    <td>@puesto.Descripcion</td>
+                                </tr>
+                            }
+                    </tbody>
+                </table>
+                <br />
+
+                <h4>Tabla de Departamentos</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Id Departamento</th>
+                            <th>Descripcion Departamento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Negocio.Departamento departamento in Model.Departamento.Departamentos)
+                        {
+                            <tr>
+                                <td>@departamento.DepartamentoID</td>
+                                <td>@departamento.Descripcion</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+
+                <h4>Tabla de Empleados</h4>
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>Id Puesto</th>
+                            <th>Descripcion Puesto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Negocio.Empleado empleado in Model.Empleados)
+                        {
+                            <tr>
+                                <td>@empleado.EmpleadoID</td>
+                                <td>@empleado.Nombre</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <br />
+}
+
